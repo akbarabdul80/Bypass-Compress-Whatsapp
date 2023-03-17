@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.widget.Toast
+import com.google.android.gms.ads.*
 import com.oratakashi.viewbinding.core.tools.*
 import com.zero.zerobase.presentation.viewbinding.BaseActivity
 import com.zerodev.wa.R
@@ -18,15 +18,19 @@ import com.zerodev.wa.utils.loadImage
 import com.zerodev.wa.utils.requestPermission
 import pl.aprilapps.easyphotopicker.*
 import java.io.File
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class ImageActivity : BaseActivity<ActivityImageBinding>() {
 
     private lateinit var lastImage: File
     private lateinit var newImage: File
     private lateinit var easyImage: EasyImage
+    private var mInterstitialAd: InterstitialAd? = null
 
     override fun initAction() {
         super.initAction()
+        initADS()
 
         easyImage = EasyImage.Builder(this)
             .setChooserTitle("Pick media")
@@ -41,18 +45,77 @@ class ImageActivity : BaseActivity<ActivityImageBinding>() {
         }
 
         binding.btnReplace.onClick {
-            if (this::newImage.isInitialized && this::lastImage.isInitialized) {
-                newImage.copyTo(lastImage, true)
-                toast("Success bypass compress")
-                loadImageOld()
-                resetState()
-            }
+            showAds()
         }
 
         binding.btnBack.onClick { finish() }
     }
 
-    private fun loadOldImage(){
+    private fun initADS() {
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+        InterstitialAd.load(
+            this,
+            "ca-app-pub-2187811703921023/9740774942",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.e("TAG", adError.toString())
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.e("TAG", "Ad was loaded.")
+                    mInterstitialAd = interstitialAd
+                }
+            })
+    }
+
+    private fun showAds() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        } else {
+            Log.e("TAG", "The interstitial ad wasn't ready yet.")
+        }
+    }
+
+    override fun initObserver() {
+        super.initObserver()
+        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdClicked() {
+                // Called when a click is recorded for an ad.
+            }
+
+            override fun onAdDismissedFullScreenContent() {
+                if (this@ImageActivity::newImage.isInitialized && this@ImageActivity::lastImage.isInitialized) {
+                    newImage.copyTo(lastImage, true)
+                    toast("Success bypass compress")
+                    loadImageOld()
+                    resetState()
+                }
+                // Called when ad is dismissed.
+                mInterstitialAd = null
+            }
+
+            override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                // Called when ad fails to show.
+                mInterstitialAd = null
+            }
+
+            override fun onAdImpression() {
+                // Called when an impression is recorded for an ad.
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                // Called when ad is shown.
+            }
+        }
+
+    }
+
+    private fun loadOldImage() {
         if (!baseContext.checkPermissionStorage()) {
             this.requestPermission()
         } else {
@@ -76,7 +139,7 @@ class ImageActivity : BaseActivity<ActivityImageBinding>() {
         }
     }
 
-    private fun resetState(){
+    private fun resetState() {
         binding.imgNew.loadImage(
             this,
             resources.getDrawable(R.drawable.list_placeholder, null)

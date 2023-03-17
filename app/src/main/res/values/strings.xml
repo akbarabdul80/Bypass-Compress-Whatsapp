@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Whatsapp Story</string>
     <string name="title_bypass">Bypass</string>
+    <string name="title_bypass_compress_whatsapp">Bypass Compress\nWhatsapp</string>
+    <string name="title_bypass_image">Bypass Image</string>
+    <string name="title_bypass_video">Bypass Video</string>
 </resources>

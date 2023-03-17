@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
             android:gravity="center"
-            android:text="Bypass Compreess\nWhatsapp"
+            android:text="@string/title_bypass_compress_whatsapp"
             android:textSize="25sp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/round_button"
             android:fontFamily="@font/medium"
-            android:text="Bypass Image" />
+            android:text="@string/title_bypass_image" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_button"
-            android:text="Bypass Video" />
+            android:text="@string/title_bypass_video" />
 
     </LinearLayout>
 

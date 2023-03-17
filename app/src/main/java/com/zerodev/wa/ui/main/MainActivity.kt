@@ -15,7 +15,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         binding.btnVideo.onClick {
-            startActivity(VideoActivity::class.java)
+            toast("Coming Soon")
         }
     }
 
