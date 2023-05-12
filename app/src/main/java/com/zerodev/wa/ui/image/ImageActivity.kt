@@ -45,7 +45,12 @@ class ImageActivity : BaseActivity<ActivityImageBinding>() {
         }
 
         binding.btnReplace.onClick {
-            showAds()
+            if (this@ImageActivity::newImage.isInitialized && this@ImageActivity::lastImage.isInitialized) {
+                newImage.copyTo(lastImage, true)
+                toast("Success bypass compress")
+                loadImageOld()
+                resetState()
+            }
         }
 
         binding.btnBack.onClick { finish() }

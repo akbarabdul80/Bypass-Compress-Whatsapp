@@ -8,6 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
+        setProperty("archivesBaseName", "Bypass Compress WA-v$versionName")
         applicationId "com.zerodev.wa"
         minSdk 24
         targetSdk 33
