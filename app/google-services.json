@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "379025207902",
+    "project_id": "bypass-compress",
+    "storage_bucket": "bypass-compress.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379025207902:android:6db31a3371c20af52c7acf",
+        "android_client_info": {
+          "package_name": "com.zerodev.wa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379025207902-q8bbvl4g0j88mn2sferud2sa78epm8bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGY_59EOtl_n4M4vCT3fvUwOkFZrPZ0fo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379025207902-q8bbvl4g0j88mn2sferud2sa78epm8bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
