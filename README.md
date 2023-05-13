@@ -10,7 +10,7 @@ Project to bypass compress on whatsapp, can be used to bypass compress whastapp 
 1. Turn off cellular data and wifi or you can activate airplane mode.
 2. Upload the image you want to whatsapp story.
 3. Open the ``Bypass Compres WA`` application.
-4. Click the ``bypass image`` button.
+4. Click the ``Bypass Image`` button.
 5. Select the image you want to upload without being compressed by WhatsApp.
 6. Click the ``Bypass`` button, then reactivate your cellular data or wifi
 7. WhatsApp will upload your photo automatically without being compressed. 🥳🥳🥳🥳🥳
