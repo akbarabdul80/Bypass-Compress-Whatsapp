@@ -3,6 +3,10 @@
 ## About Bypass Compress WA
 Project to bypass compress on whatsapp, can be used to bypass compress whastapp stories
 
+|                                                      Before                                                      |                                                         After                                                           |
+| :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|        ![](assets/before.png)         |        ![](assets/after.png)         |
+
 ## Release Links
 - [Bypass Compress WA V1.0](https://github.com/akbarabdul80/Bypass-Compress-Whatsapp/releases/tag/V1.0)
 
